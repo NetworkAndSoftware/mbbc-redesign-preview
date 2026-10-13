@@ -70,6 +70,7 @@
   /* Masthead */
   .masthead {
     position: relative;
+    overflow: hidden;
     padding: 72px 0 calc(min(36vw, 420px));
     background: var(--ink) url('img/hero-baker.png') center bottom / cover no-repeat;
     color: #FFFFFF;
@@ -83,7 +84,12 @@
     font-size: clamp(46px, 8vw, 96px);
   }
 
-  .masthead h1 span { color: var(--accent); }
+  /* The domain is one long word; shrink it to fit the width on phones */
+  .masthead h1 span {
+    display: inline-block;
+    color: var(--accent);
+    font-size: min(1em, calc((100vw - 40px) / 10));
+  }
 
   .masthead .lede {
     max-width: 34em;
@@ -359,6 +365,15 @@
     font-size: 20px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  /* On phones the art sits below the text instead of behind it */
+  @media (max-width: 700px) {
+    .masthead {
+      padding: 48px 0 360px;
+      background-size: 900px auto;
+      background-position: 72% 100%;
+    }
   }
 
   @media (max-width: 860px) {
